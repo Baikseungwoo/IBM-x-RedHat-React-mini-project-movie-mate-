@@ -59,10 +59,7 @@ const LoginPage = () => {
 
     <div className="mt-6 border-t border-stone-200 pt-5 text-center">
       <p className="mb-3 text-sm text-stone-600">혹시 회원이 아니신가요?</p>
-      <button
-        onClick={goSignUp}
-        className="rounded-xl border border-amber-500 px-5 py-2 font-medium text-amber-600 transition duration-200 hover:bg-amber-50"
-      >
+      <button onClick={goSignUp} className="rounded-xl border border-amber-500 px-5 py-2 font-medium text-amber-600 transition duration-200 hover:bg-amber-50">
         회원가입
       </button>
     </div>
