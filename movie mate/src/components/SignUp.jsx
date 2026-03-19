@@ -67,17 +67,67 @@ const SignUp = () => {
 
 
     return (
-        <div>
-            <h1>회원가입</h1>
-            <form onSubmit={sub}>
-                ID: <input placeholder='ID 입력' value={id} onChange={(e)=> setId(e.target.value)}/>
-                <button type="button" onClick={check}>중복확인</button><br></br>
-                Password: <input type='password' placeholder='Password 입력' value={pw} onChange={(e)=> setPw(e.target.value)}/><br></br>
-                나이: <input  placeholder='나이 입력' value={age} onChange={(e)=> setAge(e.target.value)}/><br></br>
-                Email: <input  placeholder='Email 입력' value={email} onChange={(e)=> setEmail(e.target.value)}/><br></br>
-                MBTI: <input  placeholder='MBTI 입력' value={mbti} onChange={(e)=> setMbti(e.target.value.toUpperCase())}/><br></br>
-                <button type='submit'>회원가입</button>
-            </form>
+        <div className="flex items-center justify-center py-10">
+            <div className="w-full max-w-xl rounded-3xl bg-white/80 p-8 shadow-lg">
+                <h1 className="mb-6 text-3xl font-bold text-stone-800">회원가입</h1>
+
+                <form onSubmit={sub} className="space-y-4">
+
+                <div>
+                    <label className="mb-1 block text-sm font-medium text-stone-700">
+                    ID <span className='text-red-600 font-bold'>*</span>
+                    </label>
+                    <div className="flex gap-2">
+                    <input placeholder="ID 입력" value={id} onChange={(e) => setId(e.target.value)}
+                        className="flex-1 rounded-xl border border-stone-300 px-4 py-3 outline-none transition duration-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200"/>
+                    <button type="button" onClick={check} className="rounded-xl border border-amber-500 px-4 py-2 text-amber-600 hover:bg-amber-50 transition">
+                        중복확인
+                    </button>
+                    </div>
+                </div>
+
+
+                <div>
+                    <label className="mb-1 block text-sm font-medium text-stone-700">
+                    Password <span className='text-red-600 font-bold'>*</span>
+                    </label>
+                    <input type="password" placeholder="Password 입력" value={pw} onChange={(e) => setPw(e.target.value)}
+                        className="w-full rounded-xl border border-stone-300 px-4 py-3 outline-none transition duration-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200"/>
+                </div>
+
+
+                <div>
+                    <label className="mb-1 block text-sm font-medium text-stone-700">
+                    나이
+                    </label>
+                    <input placeholder="나이 입력" value={age} onChange={(e) => setAge(e.target.value)}
+                        className="w-full rounded-xl border border-stone-300 px-4 py-3 outline-none transition duration-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200"/>
+                </div>
+
+
+                <div>
+                    <label className="mb-1 block text-sm font-medium text-stone-700">
+                    Email
+                    </label>
+                    <input placeholder="Email 입력" value={email} onChange={(e) => setEmail(e.target.value)}
+                        className="w-full rounded-xl border border-stone-300 px-4 py-3 outline-none transition duration-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200"/>
+                </div>
+
+
+                <div>
+                    <label className="mb-1 block text-sm font-medium text-stone-700">
+                    MBTI <span className='text-red-600 font-bold'>*</span>
+                    </label>
+                    <input placeholder="MBTI 입력" value={mbti} onChange={(e) => setMbti(e.target.value.toUpperCase())}
+                        className="w-full rounded-xl border border-stone-300 px-4 py-3 uppercase outline-none transition duration-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200"/>
+                </div>
+
+
+                <button type="submit" className="w-full rounded-xl bg-amber-500 px-4 py-3 font-semibold text-white shadow-md transition duration-200 hover:bg-amber-600 hover:shadow-lg">
+                    회원가입
+                </button>
+                </form>
+            </div>
         </div>
     );
 };

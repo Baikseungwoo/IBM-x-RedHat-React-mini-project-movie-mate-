@@ -10,7 +10,8 @@ const App = () => {
   const {currentUser, logout} = useAuth();
 
   const clickbtn = ()=>{
-    logout()
+    const ok = confirm("정말 로그아웃 하시겠습니까??")
+    if(ok){logout()}
   }
 
   return (
@@ -23,8 +24,8 @@ const App = () => {
                   Movie Mate
                 </h1>
                 <p className="text-sm text-black-500">
-                  접속자 ID : {(currentUser)? (currentUser.id) : ("Guest") }
-                  {(currentUser)? (<button onClick={()=>clickbtn()} className='mx-5 px-1 border border-gray-300 hover:bg-gray-200 rounded-lg'>로그아웃</button>) : ("") }
+                  {(currentUser)? (<span>접속자 ID : {currentUser.id}</span>) : ("현재 Guest 상태로 접속중...") }
+                  {(currentUser)? (<button onClick={()=>clickbtn()} className='mx-5 px-1 border border-gray-300 hover:bg-red-300 rounded-lg'>로그아웃</button>) : ("") }
                 </p>
               </div>
             </header>
