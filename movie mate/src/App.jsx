@@ -10,7 +10,7 @@ const App = () => {
   const {currentUser, logout} = useAuth();
 
   const clickbtn = ()=>{
-    const ok = confirm("정말 로그아웃 하시겠습니까??")
+    const ok = confirm("정말 로그아웃 하시겠습니까?")
     if(ok){logout()}
   }
 
