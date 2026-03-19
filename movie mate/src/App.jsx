@@ -24,8 +24,8 @@ const App = () => {
                   Movie Mate
                 </h1>
                 <p className="text-sm text-black-500">
-                  {(currentUser)? (<span>접속자 ID : {currentUser.id}</span>) : ("현재 Guest 상태로 접속중...") }
-                  {(currentUser)? (<button onClick={()=>clickbtn()} className='mx-5 px-1 border border-gray-300 hover:bg-red-300 rounded-lg'>로그아웃</button>) : ("") }
+                  {(currentUser)? (<span>접속자 ID :  <span className='font-bold'>{currentUser.id}</span> 님</span>) : ("현재 Guest 상태로 접속중...") }
+                  {(currentUser)? (<button onClick={()=>clickbtn()} className='mx-5 px-3 py-1 border border-gray-400 hover:bg-red-300 rounded-lg'>로그아웃</button>) : ("") }
                 </p>
               </div>
             </header>
