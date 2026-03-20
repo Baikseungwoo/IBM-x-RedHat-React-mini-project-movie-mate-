@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes  } from 'react-router-dom';
 import SignUp from './components/SignUp';
 import MainPage from './components/MainPage'
 import { useAuth } from './hooks/AuthContextPro';
+import Header from './components/Header';
 
 const App = () => {
 
@@ -29,6 +30,7 @@ const App = () => {
                 </p>
               </div>
             </header>
+            < Header />
             <main className="flex-1">
               <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
                 <div className="rounded-3xl border border-white/60 bg-white/70 p-6 shadow-xl backdrop-blur-sm sm:p-8">
