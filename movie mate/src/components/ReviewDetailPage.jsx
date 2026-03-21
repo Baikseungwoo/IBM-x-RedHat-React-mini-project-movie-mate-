@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../hooks/AuthContextPro';
 import { useLocalStorage } from '../hooks/useLocalStorage';
@@ -10,6 +10,12 @@ const ReviewDetailPage = () => {
     const [reviews,setReviews]=useLocalStorage('reviews',[]);
     const [wishlist,setWishlist]=useLocalStorage('like',[]);
     const reviewData=reviews.find(item=>item.id===parseInt(id))
+    useEffect(()=>{
+            if(!currentUser){
+                alert('로그인이 필요합니다.')
+                navigator('/login')
+            }
+        },[currentUser, navigator])
     const zzimbtn = () => {        
         const alreadyZzim = wishlist.some(zzimdata => 
             zzimdata.userId === currentUser.id && zzimdata.reviewId === reviewData.id

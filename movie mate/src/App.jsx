@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import LoginPage from './components/LoginPage';
 import { BrowserRouter, Route, Routes  } from 'react-router-dom';
 import SignUp from './components/SignUp';
@@ -7,8 +7,13 @@ import { useAuth } from './hooks/AuthContextPro';
 import Header from './components/Header';
 import ReviewListPage from './components/ReviewListPage';
 import ReviewDetailPage from './components/ReviewDetailPage';
+import { initLocalStorage } from "./utils/initLocalStorage";
 
 const App = () => {
+
+  useEffect(() => {
+    initLocalStorage();
+  }, []);
 
   const {currentUser, logout} = useAuth();
 
@@ -46,9 +51,10 @@ const App = () => {
                   </Routes>
                 </div>
               </div>
+              
             </main>
             <footer className="border-t border-amber-200/70 bg-white/60 py-4 text-center text-sm text-stone-500">
-              Movie Review React Project
+              Team 2 : Movie Review React Project
             </footer>
             </div>
         </BrowserRouter>

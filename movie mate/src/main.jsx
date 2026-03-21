@@ -6,9 +6,7 @@ import'./index.css'
 import AuthContextPro from './hooks/AuthContextPro';
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
     <AuthContextPro>
     <App />
     </AuthContextPro>
-  </StrictMode>,
 )
