@@ -109,7 +109,7 @@ const MyPage = () => {
 
                 <button
                 onClick={onClickEditImage}
-                className="absolute bottom-0 right-0 bg-amber-500 text-white rounded-full p-2 text-xs shadow hover:bg-amber-600 transition"
+                className="absolute bottom-0 right-0 bg-gray-200 text-white rounded-full p-2 text-xs shadow hover:bg-amber-400 transition"
                 >
                 ✏️
                 </button>
