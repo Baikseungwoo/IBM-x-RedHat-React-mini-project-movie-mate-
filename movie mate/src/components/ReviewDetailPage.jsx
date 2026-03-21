@@ -41,17 +41,67 @@ const ReviewDetailPage = () => {
     };
      if (!reviewData) return <div>리뷰를 불러오고 있습니다.</div>
     return (
-        <div>
-            <h1>{reviewData.title}</h1>
-            <p>작성자 : {reviewData.writerId} {reviewData.writerMbti}</p>
-            <p>장르 : {reviewData.genre}  평점 : {reviewData.rating}</p>
-            <p>{reviewData.content}</p>
-            <div>
-                <span>좋아요! : {reviewData.likes}</span>
-                <button onClick={zzimbtn}>좋아요!찜!</button>                
+        <div className="max-w-3xl mx-auto space-y-6">
+
+
+            <div className="rounded-3xl bg-white/90 p-8 shadow-xl border border-amber-100">
+
+
+                <h1 className="text-3xl font-bold text-stone-800 mb-3">
+                {reviewData.title}
+                </h1>
+
+
+                <div className="flex items-center gap-2 text-sm text-stone-500 mb-4">
+                <span>작성자 :</span>
+                <span className="font-medium text-stone-700">{reviewData.writerId}</span>
+                <span className="px-2 py-0.5 rounded bg-amber-100 text-amber-700 text-xs font-semibold">
+                    {reviewData.writerMbti}
+                </span>
+                </div>
+
+                <div className="flex items-center gap-4 text-sm mb-6">
+                <span className="px-3 py-1 rounded-full bg-gray-100 text-stone-700">
+                    🎬 {reviewData.genre}
+                </span>
+
+                <span className="px-3 py-1 rounded-full bg-yellow-100 text-yellow-700 font-medium">
+                    ⭐ {reviewData.rating}
+                </span>
+                </div>
+
+                <div className="text-stone-700 leading-relaxed text-base border-t border-gray-200 pt-6">
+                {reviewData.content}
+                </div>
+
+
+                <div className="flex items-center justify-between mt-8 pt-6 border-t border-gray-200">
+
+                <span className="text-sm text-stone-600">
+                    ♥️ <span className="font-semibold text-amber-600">{reviewData.likes}</span>
+                </span>
+
+                <button
+                    onClick={zzimbtn}
+                    className="px-5 py-2 rounded-xl bg-amber-500 text-white shadow-md hover:bg-amber-600 hover:shadow-lg transition duration-200"
+                >
+                    좋아요 + 찜
+                </button>
+
+                </div>
             </div>
-            <button onClick={()=>navigator('/reviews')}>목록으로</button>
-        </div>
+
+
+            <div className="flex justify-end">
+                <button
+                onClick={() => navigator('/reviews')}
+                className="px-4 py-2 rounded-xl border border-gray-300 text-stone-700 hover:bg-gray-100 transition duration-200"
+                >
+                목록으로
+                </button>
+            </div>
+
+            </div>
     );
 };
 

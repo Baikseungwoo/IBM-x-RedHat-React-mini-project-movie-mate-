@@ -16,7 +16,11 @@ export const generateMbtiSeedReviews = () => {
       reviews.push({
         id: id++,
         title: `${Math.floor(Math.random()*10+1)}번 영화 관점 리뷰 ${Math.floor(Math.random()*10+1)}`,
-        content: `${mbti} 성향으로 본 영화 후기 ${i}번입니다.`,
+        content: `${mbti} 성향으로 본 영화 후기 ${i}번입니다.\n
+        너무너무 재미가 있었습니다\n
+        다음에 기회가 된다면 한번더 보고 싶습니다. \n
+        여러분들도 혹시 시간이 된다면 꼭 한번씩 보시기를 추천드립니다.\n
+        좋아요좀 많이 눌러주세용~~!!`,
         rating: Math.floor(Math.random()*5+1),
         writerId: '백승우',
         writerMbti: mbti,

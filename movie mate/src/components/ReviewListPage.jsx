@@ -10,12 +10,6 @@ const ReviewListPage = () => {
     const [choiceGenre, setChoiceGenre]=useState('전체');
     const [reviews,setReviews]=useLocalStorage('reviews',[]);
     const { currentUser } = useAuth();
-    useEffect(()=>{
-        if(!currentUser){
-            alert('로그인이 필요합니다.')
-            navigator('/login')
-        }
-    },[currentUser, navigator])
     const category=['전체','액션','공포','코미디','로맨스','SF']
     const select= choiceGenre==='전체' ? reviews : reviews.filter(review=>review.genre===choiceGenre)
     const totalPages = Math.ceil(select.length / ITEMS_PER_PAGE);
@@ -61,7 +55,8 @@ const ReviewListPage = () => {
         <div className="rounded-2xl border border-amber-100 bg-white/80 p-6 shadow-md space-y-4">
             {pagedReviews.length > 0 ? (
             pagedReviews.map((clickreview) => (
-                <div
+                (currentUser) ? (
+                    <div
                 key={clickreview.id}
                 onClick={() => navigator(`/reviews/${clickreview.id}`)}
                 className="group cursor-pointer rounded-2xl border border-gray-200 bg-white px-5 py-4 transition duration-200 hover:-translate-y-0.5 hover:border-amber-200 hover:bg-amber-50/60 hover:shadow-md"
@@ -89,6 +84,39 @@ const ReviewListPage = () => {
                     </span>
                 </div>
                 </div>
+                ):(
+                    <div
+                key={clickreview.id}
+                onClick={() => {
+                    alert("로그인후 내용을 확인하실 수 있습니다.")
+                    navigator('/login')
+                }}
+                className="group cursor-pointer rounded-2xl border border-gray-200 bg-white px-5 py-4 transition duration-200 hover:-translate-y-0.5 hover:border-amber-200 hover:bg-amber-50/60 hover:shadow-md"
+                >
+                <div className="mb-2 flex items-start justify-between gap-3">
+                    <h3 className="text-lg font-semibold text-stone-800 group-hover:text-amber-700">
+                    {clickreview.title}
+                    </h3>
+                    <span className="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-medium text-amber-700">
+                    {clickreview.genre}
+                    </span>
+                </div>
+
+                <p className="mt-1 text-sm text-stone-600">
+                    평점 : <span className="font-medium text-stone-700">{clickreview.rating}</span>
+                </p>
+
+                <div className="mt-3 flex items-center justify-between">
+                    <p className="text-sm text-stone-500">
+                    작성자 : {clickreview.writerId} ({clickreview.writerMbti})
+                    </p>
+
+                    <span className="text-sm font-medium text-amber-600">
+                    👍 {clickreview.likes}
+                    </span>
+                </div>
+                </div>
+                )
             ))
             ) : (
             <p className="text-center text-stone-500">
