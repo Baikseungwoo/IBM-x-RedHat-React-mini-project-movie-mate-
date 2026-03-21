@@ -22,12 +22,24 @@ const ReviewListPage = () => {
                 영화 리뷰
             </h2>
 
-            <button
-                onClick={() => navigator(`/reviews/new`)}
+            {currentUser ? (
+                <button
+                onClick={() => navigator(`/reviews/write`)}
                 className="rounded-xl bg-amber-500 px-5 py-2 text-white shadow-md transition duration-200 hover:bg-amber-600 hover:shadow-lg"
             >
                 리뷰쓰기
             </button>
+            ):(
+                <button
+                onClick={() => {
+                    alert("로그인 후 리뷰 작성이 가능합니다.")
+                    navigator('/login')
+                }}
+                className="rounded-xl bg-amber-500 px-5 py-2 text-white shadow-md transition duration-200 hover:bg-amber-600 hover:shadow-lg"
+            >
+                리뷰쓰기
+            </button>
+            )}
         </div>
 
         <div className="rounded-2xl border border-amber-100 bg-white/80 p-4 shadow-md">
@@ -65,13 +77,14 @@ const ReviewListPage = () => {
                     <h3 className="text-lg font-semibold text-stone-800 group-hover:text-amber-700">
                     {clickreview.title}
                     </h3>
+                    
                     <span className="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-medium text-amber-700">
-                    {clickreview.genre}
+                    🎬 {clickreview.genre}
                     </span>
                 </div>
 
                 <p className="mt-1 text-sm text-stone-600">
-                    평점 : <span className="font-medium text-stone-700">{clickreview.rating}</span>
+                    ⭐(평점) : <span className="font-medium text-stone-700">{clickreview.rating}</span>
                 </p>
 
                 <div className="mt-3 flex items-center justify-between">
@@ -80,7 +93,7 @@ const ReviewListPage = () => {
                     </p>
 
                     <span className="text-sm font-medium text-amber-600">
-                    👍 {clickreview.likes}
+                    ♥️ {clickreview.likes}
                     </span>
                 </div>
                 </div>

@@ -8,6 +8,11 @@ import Header from './components/Header';
 import ReviewListPage from './components/ReviewListPage';
 import ReviewDetailPage from './components/ReviewDetailPage';
 import { initLocalStorage } from "./utils/initLocalStorage";
+import ReviewEditPage from './components/ReviewEditPage';
+import ReviewWritePage from './components/ReviewWritePage';
+import MyPage from './components/MyPage';
+import MyReviewsPage from './components/MyReviewPage';
+import MyLikedReviewsPage from './components/MyLikedReviewPage';
 
 const App = () => {
 
@@ -47,11 +52,15 @@ const App = () => {
                     <Route path="/" element={<MainPage />} />
                     <Route path="/reviews" element={<ReviewListPage />} />
                     <Route path="/reviews/:id" element={<ReviewDetailPage />} />
-
+                    <Route path="/reviews/edit:id" element={<ReviewEditPage />} />
+                    <Route path="/reviews/write" element={<ReviewWritePage />} />
+                    <Route path="/mypage" element={<MyPage />} />
+                    <Route path="/mypage/my-reviews" element={<MyReviewsPage />} />
+                    <Route path="/mypage/liked-reviews" element={<MyLikedReviewsPage />} />
                   </Routes>
                 </div>
               </div>
-              
+
             </main>
             <footer className="border-t border-amber-200/70 bg-white/60 py-4 text-center text-sm text-stone-500">
               Team 2 : Movie Review React Project
