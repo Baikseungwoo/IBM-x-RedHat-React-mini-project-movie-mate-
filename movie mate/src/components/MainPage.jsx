@@ -5,7 +5,7 @@ import { useAuth } from '../hooks/AuthContextPro';
 const MainPage = () => {
     const { currentUser } = useAuth();
     const [allReviews, setAllReviews] = useState([]);
-    const [selectedMbti, setSelectedMbti] = useState(currentUser ? currentUser.mbti : "INFP");
+    const [selectedMbti, setSelectedMbti] = useState(currentUser ? currentUser.mbti : "ISTJ");
 
     const mbtiList = ["ISTJ", "ISFJ", "INFJ", "INTJ", "ISTP", "ISFP", "INFP", "INTP", "ESTP", "ESFP", "ENFP", "ENTP", "ESTJ", "ESFJ", "ENFJ", "ENTJ"]
 
@@ -15,7 +15,7 @@ const MainPage = () => {
     }, []);
 
     // 로그인 여부에 상관없이 현재 타겟이 되는 MBTI
-    const currentViewMbti = currentUser ? currentUser.mbti : selectedMbti;
+    const currentViewMbti = selectedMbti;
 
     return (
         <div className="space-y-8">
@@ -36,7 +36,7 @@ const MainPage = () => {
                     <button
                         key={m}
                         onClick={() => setSelectedMbti(m)}
-                        className={`px-3 py-1 rounded-lg border text-sm transition
+                        className={`px-7 py-1 rounded-lg border text-sm transition mx-auto
                         ${selectedMbti === m
                             ? "bg-amber-500 text-white border-amber-500"
                             : "border-gray-300 hover:bg-amber-50"

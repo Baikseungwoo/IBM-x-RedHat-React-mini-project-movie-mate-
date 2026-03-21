@@ -5,6 +5,8 @@ import SignUp from './components/SignUp';
 import MainPage from './components/MainPage'
 import { useAuth } from './hooks/AuthContextPro';
 import Header from './components/Header';
+import ReviewListPage from './components/ReviewListPage';
+import ReviewDetailPage from './components/ReviewDetailPage';
 
 const App = () => {
 
@@ -38,6 +40,9 @@ const App = () => {
                     <Route path="/login" element={<LoginPage />} />
                     <Route path="/signup" element={<SignUp />} />
                     <Route path="/" element={<MainPage />} />
+                    <Route path="/reviews" element={<ReviewListPage />} />
+                    <Route path="/reviews/:id" element={<ReviewDetailPage />} />
+
                   </Routes>
                 </div>
               </div>
