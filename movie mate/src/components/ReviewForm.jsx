@@ -1,6 +1,7 @@
 // src/components/ReviewForm.jsx
 import React, { useState } from "react";
 
+
 const DEFAULT_VALUES = {
   title: "",
   content: "",
@@ -8,7 +9,7 @@ const DEFAULT_VALUES = {
   rating: 5,
 };
 
-const GENRES = ["액션", "공포", "코미디", "로맨스", "SF"];
+const GENRES = ['액션','공포','코미디','로맨스','SF', '드라마','판타지'];
 
 const ReviewForm = ({ mode = "write", initialValues = {}, onSubmit }) => {
   const [form, setForm] = useState({ ...DEFAULT_VALUES, ...initialValues });
@@ -42,64 +43,94 @@ const ReviewForm = ({ mode = "write", initialValues = {}, onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div>
-        <label>제목</label>
-        <input
-          name="title"
-          value={form.title}
-          onChange={handleChange}
-          className="w-full border rounded px-3 py-2"
-        />
-        {errors.title && <p className="text-red-500 text-sm">{errors.title}</p>}
-      </div>
+    <form onSubmit={handleSubmit} className="space-y-6">
 
-      <div>
-        <label>장르</label>
-        <select
-          name="genre"
-          value={form.genre}
-          onChange={handleChange}
-          className="w-full border rounded px-3 py-2"
-        >
-          {GENRES.map((g) => (
-            <option key={g} value={g}>
-              {g}
-            </option>
-          ))}
-        </select>
-        {errors.genre && <p className="text-red-500 text-sm">{errors.genre}</p>}
-      </div>
+        {/* 제목 */}
+        <div>
+            <label className="block text-base font-semibold text-stone-700 mb-1">
+            📣 제목
+            </label>
+            <input
+            name="title"
+            value={form.title}
+            onChange={handleChange}
+            className="w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none transition duration-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200"
+            placeholder="리뷰 제목을 입력하세요"
+            />
+            {errors.title && (
+            <p className="mt-1 text-sm text-red-500">{errors.title}</p>
+            )}
+        </div>
 
-      <div>
-        <label>평점 (1~5)</label>
-        <input
-          type="number"
-          name="rating"
-          min={1}
-          max={5}
-          value={form.rating}
-          onChange={handleChange}
-          className="w-full border rounded px-3 py-2"
-        />
-        {errors.rating && <p className="text-red-500 text-sm">{errors.rating}</p>}
-      </div>
+        {/* 장르 */}
+        <div>
+            <label className="block text-base font-semibold text-stone-700 mb-1">
+            🎬 장르
+            </label>
+            <select
+            name="genre"
+            value={form.genre}
+            onChange={handleChange}
+            className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm outline-none transition duration-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200"
+            >
+            {GENRES.map((g) => (
+                <option key={g} value={g}>
+                {g}
+                </option>
+            ))}
+            </select>
+            {errors.genre && (
+            <p className="mt-1 text-sm text-red-500">{errors.genre}</p>
+            )}
+        </div>
 
-      <div>
-        <label>내용</label>
-        <textarea
-          name="content"
-          rows={6}
-          value={form.content}
-          onChange={handleChange}
-          className="w-full border rounded px-3 py-2"
-        />
-        {errors.content && <p className="text-red-500 text-sm">{errors.content}</p>}
-      </div>
+        {/* 평점 */}
+        <div>
+            <label className="block text-base font-semibold text-stone-700 mb-1">
+            ⭐ 평점 (1~5)
+            </label>
+            <input
+            type="number"
+            name="rating"
+            min={1}
+            max={5}
+            value={form.rating}
+            onChange={handleChange}
+            className="w-full rounded-xl border border-gray-300 px-4 py-2 text-sm outline-none transition duration-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200"
+            />
+            {errors.rating && (
+            <p className="mt-1 text-sm text-red-500">{errors.rating}</p>
+            )}
+        </div>
 
-      <button type="submit" className="px-4 py-2 rounded bg-amber-500 text-white">
-        {mode === "edit" ? "수정 완료" : "작성 완료"}
-      </button>
+        {/* 내용 */}
+        <div>
+            <label className="block text-base font-semibold text-stone-700 mb-1">
+            내용
+            </label>
+            <textarea
+            name="content"
+            rows={6}
+            value={form.content}
+            onChange={handleChange}
+            className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm outline-none transition duration-200 focus:border-amber-500 focus:ring-2 focus:ring-amber-200 resize-none"
+            placeholder="리뷰 내용을 작성해주세요"
+            />
+            {errors.content && (
+            <p className="mt-1 text-sm text-red-500">{errors.content}</p>
+            )}
+        </div>
+
+        {/* 버튼 */}
+        <div className="flex justify-end">
+            <button
+            type="submit"
+            className="px-6 py-2.5 rounded-xl bg-amber-500 text-white font-semibold shadow-md hover:bg-amber-600 hover:shadow-lg transition duration-200"
+            >
+            {mode === "edit" ? "수정 완료" : "작성 완료"}
+            </button>
+        </div>
+
     </form>
   );
 };

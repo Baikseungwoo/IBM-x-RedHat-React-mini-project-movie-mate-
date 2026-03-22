@@ -47,6 +47,7 @@ const ReviewEditPage = () => {
     );
 
     setReviews(updatedReviews);
+    alert("게시글 수정을 완료했습니다.")
     navigate(`/reviews/${reviewId}`);
   };
 

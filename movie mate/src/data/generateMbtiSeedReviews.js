@@ -26,7 +26,7 @@ export const generateMbtiSeedReviews = () => {
         writerMbti: mbti,
         genre: GENRES[(id + i) % GENRES.length],
         likes: Math.floor(Math.random()*30+1),
-        createdAt: `2026-03-${String(((id + i) % 28) + 1).padStart(2, "0")}`,
+        createdAt: `2026-03-${String(((id + i) % 20) + 1).padStart(2, "0")}`,
       });
     }
   }

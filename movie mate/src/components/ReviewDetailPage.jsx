@@ -43,6 +43,7 @@ const ReviewDetailPage = () => {
      const del= (id)=>{
         const newReviews = reviews.filter((i)=> i.id !== parseInt(id))
         setReviews(newReviews)
+        alert("게시글 삭제를 완료했습니다.")
         navigator("/reviews")
      }
     return (
@@ -95,7 +96,7 @@ const ReviewDetailPage = () => {
 
                 </div>
             </div>
-            {reviewData.writerId === currentUser.id ? (
+            {currentUser && (reviewData.writerId === currentUser.id) ? (
                 <div className="flex gap-3 mt-6">
 
                     {/* 수정 버튼 */}

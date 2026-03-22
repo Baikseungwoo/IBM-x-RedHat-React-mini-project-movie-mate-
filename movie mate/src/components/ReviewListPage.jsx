@@ -10,11 +10,25 @@ const ReviewListPage = () => {
     const [choiceGenre, setChoiceGenre]=useState('전체');
     const [reviews,setReviews]=useLocalStorage('reviews',[]);
     const { currentUser } = useAuth();
-    const category=['전체','액션','공포','코미디','로맨스','SF']
-    const select= choiceGenre==='전체' ? reviews : reviews.filter(review=>review.genre===choiceGenre)
-    const totalPages = Math.ceil(select.length / ITEMS_PER_PAGE);
+    const category=['전체','액션','공포','코미디','로맨스','SF', '드라마','판타지']
+    const getSortTime = (review) => {
+        const t = Date.parse(review.updatedAt || review.createdAt || "");
+        return Number.isNaN(t) ? 0 : t;
+    };
+
+    const filteredReviews =
+    choiceGenre === '전체'
+        ? reviews
+        : reviews.filter((review) => review.genre === choiceGenre);
+
+    const sortedReviews = [...filteredReviews].sort(
+        (a, b) => getSortTime(b) - getSortTime(a)
+    );
+
+    const totalPages = Math.ceil(sortedReviews.length / ITEMS_PER_PAGE);
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const pagedReviews = select.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+    const pagedReviews = sortedReviews.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
   return (
     <div className="space-y-6">
         <div className="flex items-center justify-between">
@@ -68,7 +82,7 @@ const ReviewListPage = () => {
             {pagedReviews.length > 0 ? (
             pagedReviews.map((clickreview) => (
                 (currentUser) ? (
-                    <div
+                <div
                 key={clickreview.id}
                 onClick={() => navigator(`/reviews/${clickreview.id}`)}
                 className="group cursor-pointer rounded-2xl border border-gray-200 bg-white px-5 py-4 transition duration-200 hover:-translate-y-0.5 hover:border-amber-200 hover:bg-amber-50/60 hover:shadow-md"
@@ -98,10 +112,10 @@ const ReviewListPage = () => {
                 </div>
                 </div>
                 ):(
-                    <div
+                <div
                 key={clickreview.id}
                 onClick={() => {
-                    alert("로그인후 내용을 확인하실 수 있습니다.")
+                    alert("로그인 후 내용을 확인할 수 있습니다.")
                     navigator('/login')
                 }}
                 className="group cursor-pointer rounded-2xl border border-gray-200 bg-white px-5 py-4 transition duration-200 hover:-translate-y-0.5 hover:border-amber-200 hover:bg-amber-50/60 hover:shadow-md"
@@ -110,13 +124,14 @@ const ReviewListPage = () => {
                     <h3 className="text-lg font-semibold text-stone-800 group-hover:text-amber-700">
                     {clickreview.title}
                     </h3>
+                    
                     <span className="rounded-full bg-amber-100 px-2.5 py-1 text-xs font-medium text-amber-700">
-                    {clickreview.genre}
+                    🎬 {clickreview.genre}
                     </span>
                 </div>
 
                 <p className="mt-1 text-sm text-stone-600">
-                    평점 : <span className="font-medium text-stone-700">{clickreview.rating}</span>
+                    ⭐(평점) : <span className="font-medium text-stone-700">{clickreview.rating}</span>
                 </p>
 
                 <div className="mt-3 flex items-center justify-between">
@@ -125,7 +140,7 @@ const ReviewListPage = () => {
                     </p>
 
                     <span className="text-sm font-medium text-amber-600">
-                    👍 {clickreview.likes}
+                    ♥️ {clickreview.likes}
                     </span>
                 </div>
                 </div>
