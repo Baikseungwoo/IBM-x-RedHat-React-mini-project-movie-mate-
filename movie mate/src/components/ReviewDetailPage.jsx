@@ -40,6 +40,11 @@ const ReviewDetailPage = () => {
         }
     };
      if (!reviewData) return <div>리뷰를 불러오고 있습니다.</div>
+     const del= (id)=>{
+        const newReviews = reviews.filter((i)=> i.id !== parseInt(id))
+        setReviews(newReviews)
+        navigator("/reviews")
+     }
     return (
         <div className="max-w-3xl mx-auto space-y-6">
 
@@ -90,7 +95,32 @@ const ReviewDetailPage = () => {
 
                 </div>
             </div>
+            {reviewData.writerId === currentUser.id ? (
+                <div className="flex gap-3 mt-6">
 
+                    {/* 수정 버튼 */}
+                    <button
+                    onClick={() => navigator(`/reviews/edit/${id}`)}
+                    className="px-4 py-2 rounded-xl border border-amber-400 text-amber-700 bg-amber-50 hover:bg-amber-100 transition duration-200"
+                    >
+                    수정
+                    </button>
+
+                    {/* 삭제 버튼 */}
+                    <button
+                    onClick={() => {
+                        const ok = confirm("정말 해당 게시물을 삭제 하시겠습니까?");
+                        if (ok) {
+                        del(id);
+                        }
+                    }}
+                    className="px-4 py-2 rounded-xl border border-red-400 text-red-600 bg-red-50 hover:bg-red-100 transition duration-200"
+                    >
+                    삭제
+                    </button>
+
+                </div>
+            ) : null}
 
             <div className="flex justify-end">
                 <button

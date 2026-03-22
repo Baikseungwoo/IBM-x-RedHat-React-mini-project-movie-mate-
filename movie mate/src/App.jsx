@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import LoginPage from './components/LoginPage';
-import { BrowserRouter, Route, Routes  } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import SignUp from './components/SignUp';
 import MainPage from './components/MainPage'
 import { useAuth } from './hooks/AuthContextPro';
@@ -15,8 +15,10 @@ import MyReviewsPage from './components/MyReviewPage';
 import MyLikedReviewsPage from './components/MyLikedReviewPage';
 import basicImage from './image/basic.png';
 import { useLocalStorage } from './hooks/useLocalStorage';
+import LogoutBtn from './components/LogoutBtn';
 
 const App = () => {
+
 
   useEffect(() => {
     initLocalStorage();
@@ -24,10 +26,6 @@ const App = () => {
 
   const {currentUser, logout} = useAuth();
 
-  const clickbtn = ()=>{
-    const ok = confirm("정말 로그아웃 하시겠습니까??")
-    if(ok){logout()}
-  }
 
   const getProfileImage = (userId) => {
     const profiles = JSON.parse(localStorage.getItem('userProfiles') || '[]');
@@ -58,7 +56,7 @@ const App = () => {
                 </h1>
                 <p className="text-sm text-black-500">
                   {(currentUser)? (<span>접속자 ID :  <span className='font-bold'>{currentUser.id}</span> 님</span>) : ("현재 Guest 상태로 접속중...") }
-                  {(currentUser)? (<button onClick={()=>clickbtn()} className='mx-5 px-3 py-1 border border-gray-400 hover:bg-red-300 rounded-lg'>로그아웃</button>) : ("") }
+                  {(currentUser)? (<LogoutBtn />) : ("") }
                 </p>
               </div>
             </header>
@@ -121,7 +119,7 @@ const App = () => {
                       <Route path="/" element={<MainPage />} />
                       <Route path="/reviews" element={<ReviewListPage />} />
                       <Route path="/reviews/:id" element={<ReviewDetailPage />} />
-                      <Route path="/reviews/edit:id" element={<ReviewEditPage />} />
+                      <Route path="/reviews/edit/:id" element={<ReviewEditPage />} />
                       <Route path="/reviews/write" element={<ReviewWritePage />} />
                       <Route path="/mypage" element={<MyPage />} />
                       <Route path="/mypage/my-reviews" element={<MyReviewsPage />} />
